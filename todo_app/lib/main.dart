@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => controllerFAB.testing(),
+        onPressed: () => controllerFAB.showBottomSheet(context),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         child: Icon(Icons.add_box),
@@ -44,13 +44,15 @@ class HomePage extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-              child: Obx(() => Itemlist(
-                  itemTitle: "Clicked title = " +
-                      controllerFAB.clicked.value.toString(),
-                  description: "You have clicked FAB for " +
-                      controllerFAB.clicked.value.toString() +
-                      " Times")))),
+        child: Obx(
+          () => ListView.builder(
+            itemCount: controllerFAB.itemList.length,
+            itemBuilder: (_, index) {
+              return controllerFAB.itemList[index];
+            },
+          ),
+        ),
+      ),
     );
   }
 }

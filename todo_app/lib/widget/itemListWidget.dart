@@ -22,16 +22,21 @@ class Itemlist extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(this.itemTitle),
-              Text(this.description),
-            ],
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(10, 15, 15, 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(this.itemTitle),
+                  Text(this.description),
+                ],
+              ),
+            ),
           ),
           IconButton(
-              onPressed: () => controller1.decrement(),
+              onPressed: () {},
               icon: Icon(
                 Icons.delete,
                 color: Colors.red,
