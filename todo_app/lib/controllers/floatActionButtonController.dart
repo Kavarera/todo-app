@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../widget/itemListWidget.dart';
 
@@ -7,7 +8,6 @@ class floatActionButtonController extends GetxController {
   var itemList = <Itemlist>[].obs;
   final textFieldC1 = TextEditingController();
   final textFieldC2 = TextEditingController();
-
   void showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       backgroundColor: Colors.white,
@@ -26,12 +26,12 @@ class floatActionButtonController extends GetxController {
           children: [
             TextField(
               keyboardType: TextInputType.name,
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: const InputDecoration(labelText: 'Title'),
               controller: textFieldC1,
             ),
             TextField(
               keyboardType: TextInputType.name,
-              decoration: InputDecoration(labelText: 'Description'),
+              decoration: const InputDecoration(labelText: 'Description'),
               controller: textFieldC2,
             ),
             const SizedBox(
@@ -44,15 +44,34 @@ class floatActionButtonController extends GetxController {
                       description: textFieldC2.text));
                   textFieldC1.clear();
                   textFieldC2.clear();
+                  saveItemListToStorage();
                   Navigator.pop(context);
                   Get.snackbar("Success", "Berhasil menambahkan task baru",
                       snackPosition: SnackPosition.TOP,
-                      margin: EdgeInsets.only(left: 10, right: 10));
+                      margin: const EdgeInsets.only(left: 10, right: 10));
                 },
                 child: const Text('Add another Task'))
           ],
         ),
       ),
     );
+  }
+
+  void saveItemListToStorage() {
+    final box = GetStorage();
+    box.write("listtodo", itemList.map((item) => item.toJson()).toList());
+  }
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await GetStorage.init();
+    final box = GetStorage();
+    if (box.hasData("listtodo")) {
+      final data = box.read<List<dynamic>>("listtodo");
+      print("on init");
+      print(data);
+      itemList.addAll(data!.map((json) => Itemlist.fromJson(json)));
+    }
   }
 }

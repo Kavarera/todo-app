@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/controllers/floatActionButtonController.dart';
-import 'package:todo_app/widget/itemListWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,12 +19,13 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage());
+        home: const HomePage());
   }
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controllerFAB = Get.put(floatActionButtonController());
@@ -35,11 +35,11 @@ class HomePage extends StatelessWidget {
         onPressed: () => controllerFAB.showBottomSheet(context),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-        child: Icon(Icons.add_box),
+        child: const Icon(Icons.add_box),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: Text("Todo App List"),
+        title: const Text("Todo App List"),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),

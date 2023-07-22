@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:todo_app/controllers/floatActionButtonController.dart';
 
 class Itemlist extends StatelessWidget {
   final String itemTitle, description;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'itemTitle': itemTitle,
+      'description': description,
+    };
+  }
+
+  // Metode fromJson untuk mengonversi bentuk JSON menjadi objek
+  factory Itemlist.fromJson(Map<String, dynamic> json) {
+    return Itemlist(
+      itemTitle: json['itemTitle'],
+      description: json['description'],
+    );
+  }
+
   const Itemlist(
       {super.key, required this.itemTitle, required this.description});
 
   @override
   Widget build(BuildContext context) {
-    final controller1 = Get.put(floatActionButtonController());
     return Container(
-      margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+      margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
       decoration: BoxDecoration(
-        border: Border.all(width: 10, color: Colors.black),
+        border: Border.all(width: 2, color: Colors.black),
         color: Colors.blue[100],
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(20),
         ),
       ),
@@ -24,20 +37,20 @@ class Itemlist extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(10, 15, 15, 20),
+              padding: const EdgeInsets.fromLTRB(10, 15, 15, 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(this.itemTitle),
-                  Text(this.description),
+                  Text(itemTitle),
+                  Text(description),
                 ],
               ),
             ),
           ),
           IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.delete,
                 color: Colors.red,
               ))
