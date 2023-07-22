@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo_app/controllers/floatActionButtonController.dart';
 
 class Itemlist extends StatelessWidget {
   final String itemTitle, description;
@@ -7,6 +9,7 @@ class Itemlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller1 = Get.put(floatActionButtonController());
     return Container(
       margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
       decoration: BoxDecoration(
@@ -28,7 +31,7 @@ class Itemlist extends StatelessWidget {
             ],
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () => controller1.decrement(),
               icon: Icon(
                 Icons.delete,
                 color: Colors.red,

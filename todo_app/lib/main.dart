@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo_app/controllers/floatActionButtonController.dart';
 import 'package:todo_app/widget/itemListWidget.dart';
 
 void main() {
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -24,12 +26,13 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final controllerFAB = Get.put(floatActionButtonController());
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => controllerFAB.testing(),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         child: Icon(Icons.add_box),
@@ -42,11 +45,12 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Itemlist(
-          itemTitle: "Test Title",
-          description: "Test description",
-        ),
-      )),
+              child: Obx(() => Itemlist(
+                  itemTitle: "Clicked title = " +
+                      controllerFAB.clicked.value.toString(),
+                  description: "You have clicked FAB for " +
+                      controllerFAB.clicked.value.toString() +
+                      " Times")))),
     );
   }
 }
