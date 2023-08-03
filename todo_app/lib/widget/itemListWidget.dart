@@ -27,8 +27,8 @@ class Itemlist extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(model.Title),
-                  Text(model.Description),
+                  Text(model.title),
+                  Text(model.description),
                 ],
               ),
             ),

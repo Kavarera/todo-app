@@ -29,9 +29,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("BUILD MAIN DART DIJALANKAN");
+    debugPrint("BUILD MAIN DART DIJALANKAN");
     final controllerFAB = Get.put(floatActionButtonController());
-    print(controllerFAB.itemList);
+    debugPrint(controllerFAB.itemList.toString());
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
           () => ListView.builder(
             itemCount: controllerFAB.itemList.length,
             itemBuilder: (_, index) {
-              print("main di eksekusi");
+              debugPrint("main di eksekusi");
               return Itemlist(model: controllerFAB.itemList[index]);
             },
           ),

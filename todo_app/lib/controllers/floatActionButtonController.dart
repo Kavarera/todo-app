@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -22,7 +24,7 @@ class floatActionButtonController extends GetxController {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -30,8 +32,8 @@ class floatActionButtonController extends GetxController {
                 color: Colors.blue,
               ),
               width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
+              child: const Padding(
+                padding: EdgeInsets.all(10),
                 child: Center(
                   child: Text(
                     "Add New Task",
@@ -63,8 +65,8 @@ class floatActionButtonController extends GetxController {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        itemList.add(
-                            new TodoModel(textFieldC1.text, textFieldC2.text));
+                        itemList
+                            .add(TodoModel(textFieldC1.text, textFieldC2.text));
                         textFieldC1.clear();
                         textFieldC2.clear();
                         saveItemListToStorage();

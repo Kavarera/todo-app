@@ -1,12 +1,14 @@
+// ignore_for_file: file_names
+
 class TodoModel {
-  final String Title;
-  final String Description;
-  TodoModel(this.Title, this.Description);
+  final String title;
+  final String description;
+  TodoModel(this.title, this.description);
 
   Map<String, dynamic> toJson() {
     return {
-      'itemTitle': this.Title,
-      'description': this.Description,
+      'itemTitle': title,
+      'description': description,
     };
   }
 
