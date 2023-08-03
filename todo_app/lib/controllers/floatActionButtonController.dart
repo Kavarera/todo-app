@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import '../widget/itemListWidget.dart';
+import 'package:todo_app/model/todoModel.dart';
 
 class floatActionButtonController extends GetxController {
-  var itemList = <Itemlist>[].obs;
+  var itemList = <TodoModel>[].obs;
   final textFieldC1 = TextEditingController();
   final textFieldC2 = TextEditingController();
   void showBottomSheet(BuildContext context) {
@@ -39,9 +38,8 @@ class floatActionButtonController extends GetxController {
             ),
             ElevatedButton(
                 onPressed: () {
-                  itemList.add(Itemlist(
-                      itemTitle: textFieldC1.text,
-                      description: textFieldC2.text));
+                  itemList
+                      .add(new TodoModel(textFieldC1.text, textFieldC2.text));
                   textFieldC1.clear();
                   textFieldC2.clear();
                   saveItemListToStorage();
@@ -57,21 +55,29 @@ class floatActionButtonController extends GetxController {
     );
   }
 
-  void saveItemListToStorage() {
+  void saveItemListToStorage() async {
     final box = GetStorage();
-    box.write("listtodo", itemList.map((item) => item.toJson()).toList());
+    await box.write(
+        "listtodo",
+        itemList.map((item) {
+          print("DATA ITEM TO JSON \n ${item.toJson()}\n\n");
+          return item.toJson();
+        }).toList());
+    print("isi box setelah add");
+    print(box.read("listtodo"));
   }
 
   @override
   void onInit() async {
+    print("CLASS FAB DI INISIALISASI");
     super.onInit();
     await GetStorage.init();
     final box = GetStorage();
     if (box.hasData("listtodo")) {
       final data = box.read<List<dynamic>>("listtodo");
-      print("on init");
-      print(data);
-      itemList.addAll(data!.map((json) => Itemlist.fromJson(json)));
+      print("Class Data = ${data}");
+      itemList.addAll(data!.map((json) => TodoModel.fromJson(json)));
     }
+    print("data box = \n ${box.read("listtodo")}\n\n");
   }
 }

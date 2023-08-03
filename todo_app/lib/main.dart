@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/controllers/floatActionButtonController.dart';
+import 'package:todo_app/model/todoModel.dart';
+import 'package:todo_app/widget/itemListWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +30,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("BUILD MAIN DART DIJALANKAN");
     final controllerFAB = Get.put(floatActionButtonController());
+    print(controllerFAB.itemList);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -48,7 +52,8 @@ class HomePage extends StatelessWidget {
           () => ListView.builder(
             itemCount: controllerFAB.itemList.length,
             itemBuilder: (_, index) {
-              return controllerFAB.itemList[index];
+              print("main di eksekusi");
+              return Itemlist(model: controllerFAB.itemList[index]);
             },
           ),
         ),

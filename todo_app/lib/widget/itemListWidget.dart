@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/model/todoModel.dart';
 
 class Itemlist extends StatelessWidget {
-  final String itemTitle, description;
+  final TodoModel model;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'itemTitle': itemTitle,
-      'description': description,
-    };
-  }
-
-  // Metode fromJson untuk mengonversi bentuk JSON menjadi objek
-  factory Itemlist.fromJson(Map<String, dynamic> json) {
-    return Itemlist(
-      itemTitle: json['itemTitle'],
-      description: json['description'],
-    );
-  }
-
-  const Itemlist(
-      {super.key, required this.itemTitle, required this.description});
+  const Itemlist({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +27,8 @@ class Itemlist extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(itemTitle),
-                  Text(description),
+                  Text(model.Title),
+                  Text(model.Description),
                 ],
               ),
             ),
