@@ -9,6 +9,7 @@ class floatActionButtonController extends GetxController {
   var itemList = <TodoModel>[].obs;
   final textFieldC1 = TextEditingController();
   final textFieldC2 = TextEditingController();
+
   void showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       backgroundColor: Colors.white,

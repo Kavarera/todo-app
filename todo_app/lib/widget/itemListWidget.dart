@@ -1,11 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:todo_app/controllers/delete_task_controller.dart';
 import 'package:todo_app/model/todoModel.dart';
 
 class Itemlist extends StatelessWidget {
   final TodoModel model;
+  final deleteController = DeleteTaskController();
 
-  const Itemlist({super.key, required this.model});
-
+  Itemlist({super.key, required this.model});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +23,13 @@ class Itemlist extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          Container(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+            ),
+            child: const Icon(Icons.task_sharp),
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 15, 15, 20),
@@ -34,7 +44,7 @@ class Itemlist extends StatelessWidget {
             ),
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () => deleteController.deleteTask(),
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,
