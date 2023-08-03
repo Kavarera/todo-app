@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/controllers/floatActionButtonController.dart';
-import 'package:todo_app/model/todoModel.dart';
 import 'package:todo_app/widget/itemListWidget.dart';
 
 void main() {
