@@ -2,13 +2,25 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:todo_app/model/todoModel.dart';
+
+import 'list_todo_controller.dart';
 
 class floatActionButtonController extends GetxController {
   var itemList = <TodoModel>[].obs;
+  final ListTodoController listTodoController = Get.find();
+
   final textFieldC1 = TextEditingController();
   final textFieldC2 = TextEditingController();
+
+  void addItem(TodoModel item) {
+    listTodoController.addItem(item);
+    textFieldC1.clear();
+    textFieldC2.clear();
+    Get.snackbar("Success", "Berhasil menambahkan task baru",
+        snackPosition: SnackPosition.TOP,
+        margin: const EdgeInsets.only(left: 10, right: 10));
+  }
 
   void showBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -66,16 +78,8 @@ class floatActionButtonController extends GetxController {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        itemList
-                            .add(TodoModel(textFieldC1.text, textFieldC2.text));
-                        textFieldC1.clear();
-                        textFieldC2.clear();
-                        saveItemListToStorage();
+                        addItem(TodoModel(textFieldC1.text, textFieldC2.text));
                         Navigator.pop(context);
-                        Get.snackbar(
-                            "Success", "Berhasil menambahkan task baru",
-                            snackPosition: SnackPosition.TOP,
-                            margin: const EdgeInsets.only(left: 10, right: 10));
                       },
                       child: const Padding(
                         padding: EdgeInsets.only(
@@ -99,25 +103,5 @@ class floatActionButtonController extends GetxController {
         ),
       ),
     );
-  }
-
-  void saveItemListToStorage() async {
-    final box = GetStorage();
-    await box.write(
-        "listtodo",
-        itemList.map((item) {
-          return item.toJson();
-        }).toList());
-  }
-
-  @override
-  void onInit() async {
-    super.onInit();
-    await GetStorage.init();
-    final box = GetStorage();
-    if (box.hasData("listtodo")) {
-      final data = box.read<List<dynamic>>("listtodo");
-      itemList.addAll(data!.map((json) => TodoModel.fromJson(json)));
-    }
   }
 }

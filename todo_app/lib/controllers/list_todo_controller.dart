@@ -16,13 +16,15 @@ class ListTodoController extends GetxController {
     _saveListTodoToStorage();
   }
 
-  void _saveListTodoToStorage() {
-    box.write("listtodo", listTodo.map((element) => element.toJson()).toList());
+  void _saveListTodoToStorage() async {
+    await box.write(
+        "listtodo", listTodo.map((element) => element.toJson()).toList());
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    await GetStorage.init();
     _loadListTodoFromStorage();
   }
 
