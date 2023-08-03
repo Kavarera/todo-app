@@ -38,21 +38,51 @@ class HomePage extends StatelessWidget {
         onPressed: () => controllerFAB.showBottomSheet(context),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-        child: const Icon(Icons.add_box),
+        child: const Icon(Icons.add_task),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text("Todo App List"),
+        title: const Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                "Todo App List ",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                "By Kavarera",
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
       ),
       body: SafeArea(
-        child: Obx(
-          () => ListView.builder(
-            itemCount: listTodoController.listTodo.length,
-            itemBuilder: (_, index) {
-              return Itemlist(model: listTodoController.listTodo[index]);
-            },
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Obx(
+            () => ListView.builder(
+              itemCount: listTodoController.listTodo.length,
+              itemBuilder: (_, index) {
+                return Itemlist(model: listTodoController.listTodo[index]);
+              },
+            ),
           ),
         ),
       ),
