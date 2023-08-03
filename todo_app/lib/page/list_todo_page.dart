@@ -19,7 +19,6 @@ class ListTodoPage extends StatelessWidget {
         foregroundColor: Colors.white,
         child: const Icon(Icons.add_task),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: const Center(
           child: Row(
