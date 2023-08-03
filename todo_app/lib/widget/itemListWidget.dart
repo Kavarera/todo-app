@@ -44,7 +44,7 @@ class Itemlist extends StatelessWidget {
             ),
           ),
           IconButton(
-              onPressed: () => deleteController.deleteTask(),
+              onPressed: () => deleteController.deleteTask(model),
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,

@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("BUILD MAIN DART DIJALANKAN");
     final listTodoController = Get.put(ListTodoController());
     final controllerFAB = Get.put(floatActionButtonController());
 
@@ -52,7 +51,6 @@ class HomePage extends StatelessWidget {
           () => ListView.builder(
             itemCount: listTodoController.listTodo.length,
             itemBuilder: (_, index) {
-              debugPrint("main di eksekusi");
               return Itemlist(model: listTodoController.listTodo[index]);
             },
           ),

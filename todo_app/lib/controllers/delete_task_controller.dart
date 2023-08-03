@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:todo_app/controllers/list_todo_controller.dart';
+import 'package:todo_app/model/todoModel.dart';
 
 class DeleteTaskController extends GetxController {
-  final box = GetStorage();
-
-  void deleteTask() {
-    debugPrint("\n\nDATA\n${box.read("listtodo")}\n\n");
+  final ListTodoController listTodoController = Get.find();
+  void deleteTask(TodoModel item) {
+    listTodoController.removeItem(item);
   }
 }
