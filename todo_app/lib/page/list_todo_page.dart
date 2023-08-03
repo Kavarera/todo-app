@@ -21,26 +21,29 @@ class ListTodoPage extends StatelessWidget {
       ),
       appBar: AppBar(
         title: const Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                "Todo App List ",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
+          child: Padding(
+            padding: EdgeInsets.only(left: 25.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "Todo App List ",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              Text(
-                "By Kavarera",
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
+                Text(
+                  "By Kavarera",
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         actions: [
