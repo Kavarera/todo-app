@@ -15,7 +15,7 @@ class AddTodoBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom + 25,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -47,6 +47,7 @@ class AddTodoBottomSheet extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
                   keyboardType: TextInputType.name,
@@ -59,29 +60,30 @@ class AddTodoBottomSheet extends StatelessWidget {
                   controller: textFieldC2,
                 ),
                 const SizedBox(
-                  height: 105,
+                  height: 30,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      listTodoController.addItem(
-                          TodoModel(textFieldC1.text, textFieldC2.text));
-                      Navigator.pop(context);
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        left: 5,
-                        right: 5,
-                        top: 10,
-                        bottom: 10,
+                  onPressed: () {
+                    listTodoController
+                        .addItem(TodoModel(textFieldC1.text, textFieldC2.text));
+                    Navigator.pop(context);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                      top: 15,
+                      bottom: 10,
+                    ),
+                    child: Text(
+                      'SUBMIT',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.lightBlue,
                       ),
-                      child: Text(
-                        'SUBMIT',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.lightBlue,
-                        ),
-                      ),
-                    ))
+                    ),
+                  ),
+                )
               ],
             ),
           ),

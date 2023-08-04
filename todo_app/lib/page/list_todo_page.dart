@@ -13,6 +13,32 @@ class ListTodoPage extends StatelessWidget {
     final controllerFAB = Get.put(floatActionButtonController());
 
     return Scaffold(
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.all(
+            Radius.circular(30),
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(30),
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.blue,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: 'Favourite',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: 'Favourite',
+              )
+            ],
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => controllerFAB.showBottomSheet(context),
         backgroundColor: Colors.blue,

@@ -7,7 +7,7 @@ class ListPageRoute {
   static final pages = [
     GetPage(
       name: RouteName.home,
-      page: () => ListTodoPage(),
+      page: () => const ListTodoPage(),
     ),
   ];
 }
