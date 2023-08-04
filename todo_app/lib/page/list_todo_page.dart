@@ -14,29 +14,31 @@ class ListTodoPage extends StatelessWidget {
 
     return Scaffold(
       bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: const BoxDecoration(
-          color: Colors.blue,
           borderRadius: BorderRadius.all(
             Radius.circular(30),
           ),
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(30),
-          ),
-          child: BottomNavigationBar(
-            backgroundColor: Colors.blue,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Favourite',
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(30),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Favourite',
-              )
-            ],
-          ),
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                color: Colors.blue,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.favorite),
+                    Icon(Icons.favorite),
+                    Spacer(),
+                    Icon(Icons.favorite),
+                  ],
+                ),
+              )),
         ),
       ),
       floatingActionButton: FloatingActionButton(
